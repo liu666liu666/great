@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        div {
+
+            width: 500px;
+            height: 400px;
+            margin: 10px auto;
+            border: 1px solid black;
+            overflow: hidden;
+            position: relative;
+        }
+
+        p {
+            padding: 5px;
+            border: 1px solid black;
+            position: absolute;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+
+    </div>
+    <script src="../assets/js/jquery-3.3.1.min.js"></script>
+    <script>
+        var arr = ["html", "javascript", "css", "html5", "css3", "jquery", "vue", "react", "java", "go", ".net",
+            "nodejs", "vb", "c++", "c", "不知道说啥了", "天气很多好"
+        ]
+        
+        var heightP = $("div").height()
+        var widthP = $("div").width()
+
+        //创建元素
+        function creatMsg() {
+            //随机取数组下标
+            let index = Math.floor(Math.random() * (arr.length))
+            //取数组中的值
+            let msg = arr[index]
+            //获取当前容器的高度
+            let left = Math.floor(Math.random() * widthP)
+            return `<p style="left:${left}px;top:${heightP}px">${msg}</p>`
+        }
+        //将元素添加到div前且自动移动
+        function append_move() {
+            var time = Math.round(Math.random() * 4000 + 1000)
+            //当前节点
+            $("div").append(creatMsg())
+            $("div p:last").animate({
+                top: "-20px"
+            }, time, "linear", function () {
+                console.log(this)
+                $(this).remove()
+            }).attr("time",time)
+
+            $("div p").hover(function () {
+                $(this).stop()
+            }, function () {
+                console.log($(this).attr("time"))
+                $(this).animate({
+                    top: "-20px"
+                }, parseInt($(this).attr("time")), "linear", function () {
+                    $(this).remove()
+                })
+            })
+        }
+
+        setInterval(function () {
+            append_move()
+        }, 1000)
+    </script>
+</body>
+
+</html>
