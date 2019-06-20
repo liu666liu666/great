@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>注册页</h2>
+    <ul>
+        <li>
+            <label for="username">用户名：</label>
+            <input type="text" id="username">
+        </li>
+        <li>
+            <label for="password">密码：</label>
+            <input type="text" id="password">
+        </li>
+        <li>
+            <button id="register">注册</button>
+        </li>
+    </ul>
+    <script src="/js/tool.js"></script>
+    <script>
+        
+        $("#register").click(() => {
+            $.ajax({
+                url: "/register",
+                type: "get",
+                data: {
+                    username: $("#username").val(),
+                    password: $("#password").val()
+                }
+            }).then((data) => {
+                console.log(data)
+            })
+        })
+    </script>
+</body>
+
+</html>

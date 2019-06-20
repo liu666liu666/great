@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "co": "^4.6.0",
+    "fs-readfile-promise": "^3.0.1"
+  },
+  "dependencies": {}
+}

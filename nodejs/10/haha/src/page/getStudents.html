@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>学生列表通过get获取数据显示</h2>
+    <div id="content"></div>
+    <script src="/js/tool.js"></script>
+    <script>
+        $.ajax({
+            url: "/api/getStudents",
+            type: "get",
+
+        }).then((data) => {
+            if (data.code == "1000") {
+                render(data)
+            }
+        })
+
+        function render(data) {
+            let str = "<ul>"
+            data.data.forEach((i) => {
+                str += `<li id='${i.id}'>id:${i.id}--姓名：${i.name}---年龄：${i.age}--性别：${i.sex}</li>`
+            });
+            str += "</ul>"
+            $("#content").html(str)
+        }
+    </script>
+</body>
+
+</html>

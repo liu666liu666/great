@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>聊天室</h2>
+    <ul>
+        <li>
+            <select name="" id="roomList">
+
+            </select>
+            <button id="goroom">进入聊天室</button>
+        </li>
+        <li>
+            <input type="text" id="roomId">
+            <button id="creatChart">创建聊天室</button>
+        </li>
+    </ul>
+    <script src="/js/tool.js"></script>
+    <script>
+
+        if(!$.getCookie("userId")){
+            window.location.href="/page/login.html"
+        }
+
+
+        window.onload = function () {
+            $.ajax({
+                url: "/chartList",
+                type: "get",
+
+            }).then((data) => {
+                if (data.code == "1000") {
+                    render(data)
+                }
+            })
+
+            function render(data) {
+                console.log(data)
+                let str = data.data.reduce((pre, cur) => {
+                    return pre + `<option value='${cur.roomId}'>${cur.roomId}</option>`
+                }, "")
+
+                $("#roomList").html(str)
+            }
+
+            //创建聊天室事件
+            $("#creatChart").click(() => {
+                $.ajax({
+                    url: "/creatChart",
+                    type: "post",
+                    data: {
+                        roomId: $("#roomId").val()
+                    }
+                }).then((data) => {
+                    if (data.code == "1000") {
+                        alert(data.msg)
+                        window.location.reload()
+                    }
+                })
+            })
+
+             //创建聊天室事件
+             $("#goroom").click(() => {
+                 sessionStorage.setItem("roomId",$("#roomList").val())
+                window.location.href="/page/room.html"
+                // window.location.href="/room.html?roomId="+$("#roomList").val()
+            })
+        }
+    </script>
+</body>
+
+</html>

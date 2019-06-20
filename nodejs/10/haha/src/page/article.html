@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>文章列表通过get获取数据显示</h2>
+    <div id="content"></div>
+    <script src="/js/tool.js"></script>
+    <script>
+        $.ajax({
+            url: "/api/getArticle",
+            type: "get",
+            data: {
+                key: "123" //此字段在接口中可以通过req.query获取，在这里无意义
+            }
+        }).then((data) => {
+            if (data.code == "1000") {
+                render(data)
+            }
+        })
+
+        function render(data) {
+            let str = "<ul>"
+            data.data.forEach((i) => {
+                str += `<li id='${i.id}'>id:${i.id}------文章标题：${i.title}</li>`
+            });
+            str += "</ul>"
+            $("#content").html(str)
+        }
+    </script>
+</body>
+
+</html>

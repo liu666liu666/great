@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .pages .pB::before{
+        content: "...";
+        display:inline-block
+    }
+    .pages .pA::after{
+        content: "...";
+        display:inline-block
+    }
+    </style>
+</head>
+
+<body>
+
+    <ul id="list"></ul>
+    <div id="pagecut">
+        
+    </div>
+    <script src="./cutpage.js"></script>
+    <script>
+      
+        var obj = new cutPage({
+            el: document.getElementById("pagecut"), //类挂载的元素
+            data: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13,14,15,16,17,18,19,20,21,22,23,24,25,26], //总数据
+            pageLength: [2, 5, 10, 15], //每页显示的数据条数；（select框显示的数据）
+
+            //select框中的每页展示条数改变时触发，获取到当前选择的每页显示的条数
+            cb1: function (data) {
+
+                console.log(data)
+
+            },
+
+            //页码改变时触发，接受到当前页的数据
+            cb2: function (data) {
+                console.log(data)
+
+                var html = ""
+                data.forEach(function (i) {
+                    html += `<li>${i}</li>`
+                });
+                list.innerHTML = html
+
+            }
+        })
+        obj.init()
+    </script>
+</body>
+
+</html>

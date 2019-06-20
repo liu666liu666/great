@@ -1,0 +1,15 @@
+2019/06/14 14:24:08 [emerg] 22272#21784: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:24:15 [emerg] 20628#21784: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:25:10 [emerg] 21396#22284: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:26:05 [error] 21812#22068: *1 CreateFile() "E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "localhost:8001", referrer: "http://localhost:8001/"
+2019/06/14 14:28:02 [emerg] 19872#19808: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:28:23 [emerg] 23412#8772: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:28:42 [emerg] 22636#19556: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:40:42 [error] 19748#23264: *1 CreateFile() "E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/html/favicon.ico" failed (2: The system cannot find the file specified), client: 127.0.0.1, server: localhost, request: "GET /favicon.ico HTTP/1.1", host: "127.0.0.1", referrer: "http://127.0.0.1/"
+2019/06/14 14:41:25 [error] 19748#23264: *1 directory index of "E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/html/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "127.0.0.1"
+2019/06/14 14:47:44 [emerg] 2680#22888: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:47:51 [error] 19748#23264: *7 directory index of "E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/html/" is forbidden, client: 127.0.0.1, server: localhost, request: "GET / HTTP/1.1", host: "127.0.0.1"
+2019/06/14 14:50:04 [emerg] 23956#24000: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:50:31 [emerg] 23156#24104: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 14:52:05 [emerg] 22444#24156: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40
+2019/06/14 15:21:52 [emerg] 23452#9032: "proxy_pass" directive is duplicate in E:\code\yunkai\nodejs\10\nginx-1.17.0\nginx-1.17.0/conf/nginx.conf:40

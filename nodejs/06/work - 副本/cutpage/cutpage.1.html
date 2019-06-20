@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    
+</head>
+
+<body>
+
+    <ul id="list"></ul>
+    <div id="pagecut">
+        
+    </div>
+    <script src="./cutpage.js"></script>
+    <script>
+      
+        var obj = new cutPage({
+            el: document.getElementById("pagecut"), //类挂载的元素
+            data: [
+                {
+                    name:"zhangsan",
+                    age:23
+                },
+                {
+                    name:"lisi",
+                    age:24
+                },
+                {
+                    name:"wangwu",
+                    age:25
+                },
+                {
+                    name:"maliu",
+                    age:23
+                },
+                {
+                    name:"liqi",
+                    age:26
+                },
+                {
+                    name:"heiba",
+                    age:231
+                },
+                {
+                    name:"baijiu",
+                    age:34
+                },
+                {
+                    name:"zhaoshi",
+                    age:54
+                }
+            ], //总数据
+            pageLength: [1, 2, 3, 4], //每页显示的数据条数；（select框显示的数据）
+
+            //select框中的每页展示条数改变时触发，获取到当前选择的每页显示的条数
+            cb1: function (data) {
+
+                console.log(data)
+
+            },
+
+            //页码改变时触发，接受到当前页的数据
+            cb2: function (data) {
+                console.log(data)
+                var str=""
+                data.forEach(function(item){
+                    str+=`<li>${item.name}---------${item.age}</li>`
+                });
+                document.querySelector("#list").innerHTML=str
+            }
+        })
+        obj.init()
+    </script>
+</body>
+
+</html>

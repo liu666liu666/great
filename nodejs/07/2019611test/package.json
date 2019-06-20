@@ -1,0 +1,17 @@
+{
+  "name": "2019611test",
+  "version": "1.0.2",
+  "description": "前端开发测试",
+  "keywords": ["js","前端"],
+  "main": "./src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nolimits4web/Swiper.git"
+  },
+
+  "author": "",
+  "license": "ISC"
+}

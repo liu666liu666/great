@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2>列表页</h2>
+    <ul>
+        <%for(let i=0;i<list.length;i++){%>
+            <li><a href="/detail/<%=list[i].id%>"><label for=""><%=i+1%>--</label><%=list[i].stem.slice(0,20)%></a></li>
+
+        <%}%>
+    </ul>
+</body>
+</html>

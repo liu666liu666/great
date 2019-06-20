@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        div {
+            width: 300px;
+            height: 450px;
+            border: 1px solid black;
+            margin: 5px auto;
+            padding: 10px;
+
+        }
+
+        ul {
+            height: 350px;
+            overflow: auto;
+        }
+
+        li {
+
+            font-size: 12px;
+            line-height: 20px;
+            border: 1px dashed lightcyan;
+        }
+
+        aside {
+
+            border-top: 2px solid lightblue;
+            padding: 10px;
+        }
+
+        p {
+            display: flex;
+            justify-content: space-around;
+            margin: 5px 0px;
+        }
+
+        p button {
+            width: 100px;
+            height: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>聊天信息</h2>
+    <div>
+
+        <ul>
+
+        </ul>
+
+        <aside>
+
+            <p>
+                <label for="">消息</label>
+                <input type="text" class="msg">
+            </p>
+            <p>
+                <button>发送</button>
+                <button id="close">关闭聊天室</button>
+            </p>
+
+        </aside>
+    </div>
+
+
+    <script src="/js/tool.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        let roomId = sessionStorage.getItem("roomId")
+        let username = null
+        let socket
+
+        if (!$.getCookie("userId")) {
+            window.location.href = "/page/login.html"
+        }
+
+
+        window.onload = function () {
+
+
+            $.ajax({
+                url: "/usermsg",
+                type: "get",
+                data: {
+                    userId: $.getCookie("userId")
+
+                }
+            }).then((data) => {
+                console.log(data)
+                if (data.code == 1000) {
+                    console.log(data.data)
+                    username = data.data.username
+                    connect()
+                } else {
+                    alert(data.msg)
+                }
+            })
+
+            //发送消息
+            document.querySelector("button").onclick = function () {
+
+                let msg = document.querySelector(".msg").value
+
+
+                socket.emit(roomId, {
+                    name: username,
+                    msg
+                })
+            }
+            document.querySelector("#close").onclick = function () {
+
+                socket.disconnect()
+            }
+
+
+        }
+
+
+        function connect() {
+            socket = io('http://192.168.2.20:8889')
+            socket.emit("data", "客户端已经建立")
+            socket.on(roomId, (data) => {
+                console.log(data)
+                render(data)
+            })
+
+        }
+
+
+        function render(data) {
+            let str = ""
+            data.forEach(item => {
+                str += `<li>${item.name}  :    ${item.msg}</li>`
+            });
+            document.querySelector("ul").innerHTML = str
+        }
+    </script>
+</body>
+
+</html>

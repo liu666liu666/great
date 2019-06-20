@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;padding:0;
+        }
+        ul{
+            display: flex;
+
+        }
+        img{
+            width: 300px
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="load">
+        <li>
+            <img src="./img/load.gif" alt="" loadImg="https://teach.faceyou.xyz/1.jpg">
+        </li>
+        <li>
+            <img src="./img/load.gif" alt="" loadImg="https://teach.faceyou.xyz/2.jpg">
+        </li>
+        <li>
+            <img src="./img/load.gif" alt="" loadImg="https://teach.faceyou.xyz/3.jpg">
+        </li>
+
+        <li>
+            <img src="./img/load.gif" alt="" loadImg="https://teach.faceyou.xyz/4.jpg">
+        </li>
+    </ul>
+
+    <script>
+        //   const imgs = [
+        //     'https://teach.faceyou.xyz/1.jpg',
+        //     'https://teach.faceyou.xyz/2.jpg',
+        //     'https://teach.faceyou.xyz/3.jpg',
+        //     'https://teach.faceyou.xyz/4.jpg',
+        //     'https://teach.faceyou.xyz/5.jpg',
+        //     'https://teach.faceyou.xyz/6.jpg'
+        // ];
+
+        
+        // class LoadIng{
+        //     constructor(option){
+        //         Object.assign(this,option,{el:document.querySelector(option.el)})
+
+        //         this.load()
+        //     }   
+        //     load(){
+        //         this.imgs=this.el.querySelectorAll("img[loadImg]")
+        //         if(this.type=="self"){
+        //             this.chained()
+        //         }else{
+        //             this.parallel()
+        //         }
+        //     }
+        //     parallel(){
+        //         Promise.all([...this.imgs].map((i)=>{
+        //             return this.loadevery(i)
+        //         }))
+        //     }
+        //     async chained(imgs){
+        //         for(let i of this.imgs){
+        //             await this.loadevery(i)
+        //         }
+        //     }
+        //     loadevery(el){
+        //         return new Promise((res,rej)=>{
+        //             let image=new Image()
+        //             let src=el.getAttribute("loadImg")
+        //             image.src=src
+        //             image.onload=()=>{
+        //                 el.src=src
+        //                 res()
+        //             }
+        //         })
+        //     }
+        // }
+
+
+        // new LoadIng({
+        //     el:"#load",
+        //     type:"all"   //self(单张加载)&all（并行加载）
+        // })
+
+
+
+
+
+
+        class LoadIng{
+            constructor(option){
+                this.el=document.querySelector(option)
+            }   
+            load(type){
+                this.imgs=this.el.querySelectorAll("img[loadImg]")
+                if(type=="self"){
+                    this.chained()
+                }else{
+                    this.parallel()
+                }
+            }
+            parallel(){
+                Promise.all([...this.imgs].map((i)=>{
+                    return this.loadevery(i)
+                }))
+            }
+            async chained(imgs){
+                for(let i of this.imgs){
+                    await this.loadevery(i)
+                }
+            }
+            loadevery(el){
+                return new Promise((res,rej)=>{
+                    let image=new Image()
+                    let src=el.getAttribute("loadImg")
+                    image.src=src
+                    image.onload=()=>{
+                        el.src=src
+                        res()
+                    }
+                })
+            }
+        }
+
+
+        (function(window){
+            function $(el){
+                return new LoadIng(el)
+            }
+            window.$=$
+        })(window)
+
+        $("#load").load("self")
+    </script>
+</body>
+
+</html>

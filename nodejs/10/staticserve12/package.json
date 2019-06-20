@@ -1,0 +1,15 @@
+{
+  "name": "staticserve12",
+  "version": "1.0.1",
+  "description": "",
+  "main": "server",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+   
+  },
+  "bin":{
+    "staticserve12":"server"
+  },
+  "author": "",
+  "license": "ISC"
+}

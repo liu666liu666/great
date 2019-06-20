@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <form action="" id="form">
+        <p>
+                <label for=""></label>
+                <input type="text" name="user">
+        </p>
+        <p>
+                <label for="">足球</label>
+                <input type="checkbox" checked name="love" value="足球">
+        </p>
+        <p>
+                <label for="">蓝球</label>
+                <input type="checkbox" checked name="love" value="蓝球">
+        </p>
+        <p>
+                <label for="">乒乓球</label>
+                <input type="checkbox"  name="love" value="乒乓球">
+        </p>
+        <p>
+                <label for="">男</label>
+                <input type="radio" checked  name="sex" value="男">
+        </p>
+        <p>
+                <label for="">女</label>
+                <input type="radio" checked  name="sex" value="女">
+        </p>
+        <p>
+                <label for=""></label>
+                <select id="" name="addr">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                </select>
+        </p>
+        <p>
+                <label for=""></label>
+                <textarea name="decription" id="" cols="30" rows="10"></textarea>
+        </p>
+        <button>提交</button>
+    </form>
+    <script>
+
+        //封装一类
+        class form{
+            //构造函数
+            constructor(el){
+                //获取节点
+                this.el=document.querySelector(el)
+                this.child=this.el.querySelectorAll("[name]")
+            }
+            value(){
+
+                //遍历所有子节点，获取属性和属性值
+                return [...this.child].reduce((pre,next)=>{
+                    let type=next.getAttribute("type")
+                    let checked=next.checked
+                    let name=next.getAttribute("name")
+                    let val=next.value
+                    //针对checkbox和radio做不同的判断
+                    if(type=="checkbox"||type=="radio"){
+                      if(!checked){
+                        return pre
+                      }
+                    }
+
+                    //针对checkbox的多选做不同的处理
+                    if(type=="checkbox"){
+                        
+                        //查看当前字符串中是否具有多选属性
+                        if(pre.includes(name)){
+                          
+                            let reg=new RegExp(`(${name}=)(\\S+)`,"g")
+                    
+                            // let reg=/(love=)(\S+)/g
+                          //将多选属性筛选出来做拼接
+                           return pre.replace(reg,(r1,r2,r3)=>{
+                                console.log(r2)
+                                return r2+r3+","+val
+                            })
+                            // return pre
+                        }else{
+                            return pre+"&"+name+"="+val
+                        }
+                    }
+                    return pre+"&"+name+"="+val
+                },"")
+            }
+        }
+
+        (function (window){
+            function $(el){
+                return new form(el)
+            }
+            window.$=$
+        })(window)
+        
+        document.querySelector("button").onclick=function(e){
+            e.preventDefault()
+            console.log($("#form").value())  //user=lisi&love=足球
+        }
+       
+    </script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <h2>添加学生使用post接口进行添加</h2>
+    <ul>
+        <li>
+            <label for="username">性名：</label>
+            <input type="text" id="name">
+        </li>
+        <li>
+            <label for="password">年龄：</label>
+            <input type="text" id="age">
+        </li>
+        <li>
+            <label for="password">性别：</label>
+            <input type="text" id="sex">
+        </li>
+        <li>
+            <label for="password">手机号：</label>
+            <input type="text" id="phone">
+        </li>
+        <li>
+            <label for="password">邮箱：</label>
+            <input type="text" id="email">
+        </li>
+        <li>
+            <label for="password">地址：</label>
+            <input type="text" id="address">
+        </li>
+        <li><button id="btnAdd">添加</button></li>
+    </ul>
+    <script src="/js/tool.js"></script>
+    <script>
+        $("#btnAdd").click(() => {
+            $.ajax({
+                url: "/api/addStudents",
+                type: "post",
+                data: {
+                    name: $("#name").val(),
+                    age: $("#age").val(),
+                    sex: $("#sex").val(),
+                    phone: $("#phone").val(),
+                    email: $("#email").val(),
+                    address: $("#address").val(),
+                }
+            }).then((data) => {
+                if (data.code == "1000") {
+                    alert("添加成功")
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>
